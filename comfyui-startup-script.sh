@@ -43,7 +43,7 @@ echo "aria2c installed."
 # CONFIG
 # ======================
 
-COMFY_DIR="./ComfyUI/models"
+COMFY_DIR="${HOME}/workspace/ComfyUI/models"
 
 ARIA2_OPT=S"-x 16 -s 16 -k 1M --file-allocation=none"
 
