@@ -43,9 +43,9 @@ echo "aria2c installed."
 # CONFIG
 # ======================
 
-COMFY_DIR="${HOME}/workspace/ComfyUI/models"
+COMFY_DIR="/workspace/ComfyUI/models"
 
-ARIA2_OPT=S"-x 16 -s 16 -k 1M --file-allocation=none"
+ARIA2_OPTS="-x 16 -s 16 -k 1M --file-allocation=none"
 
 # mkdir -p \
 #   "$COMFY_DIR/diffusion_models" \
@@ -69,7 +69,7 @@ download () {
 
 
 echo "========================================================="
-echo "1. SeedVR2
+echo "1. SeedVR2"
 echo "========================================================="
 
 # =========================================================
