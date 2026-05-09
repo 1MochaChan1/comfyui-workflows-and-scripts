@@ -150,6 +150,26 @@ download \
 "https://huggingface.co/ByteZSzn/Flux.2-Turbo-ComfyUI/resolve/main/Flux_2-Turbo-LoRA_comfyui.safetensors" \
 "$COMFY_DIR/loras/Flux_2-Turbo-LoRA_comfyui.safetensors"
 
+echo "========================================================="
+echo "5. Flux2 Klein"
+echo "========================================================="
+
+# =========================================================
+# 4. Flux2 Klein
+# =========================================================
+
+download \
+"https://huggingface.co/black-forest-labs/FLUX.2-klein-base-9b-fp8/resolve/main/flux-2-klein-base-9b-fp8.safetensors" \
+"$COMFY_DIR/diffusion_models/flux-2-klein-base-9b-fp8.safetensors"
+
+download \
+"https://huggingface.co/Comfy-Org/flux2-klein-9B/resolve/main/split_files/text_encoders/qwen_3_8b_fp8mixed.safetensors" \
+"$COMFY_DIR/text_encoders/qwen_3_8b_fp8mixed.safetensors"
+
+download \
+"https://huggingface.co/black-forest-labs/FLUX.2-small-decoder/resolve/main/full_encoder_small_decoder.safetensors" \
+"$COMFY_DIR/vae/full_encoder_small_decoder.safetensors"
+
 echo ""
 echo "======================================="
 echo "All model downloads completed."
