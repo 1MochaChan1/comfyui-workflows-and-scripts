@@ -117,7 +117,7 @@ download \
 "$COMFY_DIR/text_encoders/t5xxl_fp16.safetensors"
 
 echo "========================================================="
-echo "3. Flux3 Dev"
+echo "3. Flux.2 Dev"
 echo "========================================================="
 
 # =========================================================
@@ -151,7 +151,7 @@ download \
 "$COMFY_DIR/loras/Flux_2-Turbo-LoRA_comfyui.safetensors"
 
 echo "========================================================="
-echo "5. Flux2 Klein"
+echo "5. Flux.2 Klein"
 echo "========================================================="
 
 # =========================================================
@@ -174,3 +174,60 @@ echo ""
 echo "======================================="
 echo "All model downloads completed."
 echo "======================================="
+
+
+
+echo "========================================================="
+echo "CUSTOM NODES"
+echo "========================================================="
+
+CUSTOM_NODES_DIR="/workspace/ComfyUI/custom_nodes"
+
+install_node () {
+  REPO_URL=$1
+  FOLDER_NAME=$2
+
+  TARGET_DIR="$CUSTOM_NODES_DIR/$FOLDER_NAME"
+
+  if [ ! -d "$TARGET_DIR" ]; then
+    echo "Cloning $FOLDER_NAME..."
+    git clone "$REPO_URL" "$TARGET_DIR"
+  else
+    echo "Updating $FOLDER_NAME..."
+    cd "$TARGET_DIR"
+    git pull
+  fi
+
+  cd "$TARGET_DIR"
+
+  if [ -f requirements.txt ]; then
+    echo "Installing requirements for $FOLDER_NAME..."
+    pip install -r requirements.txt
+  fi
+
+  if [ -f install.py ]; then
+    echo "Running install.py for $FOLDER_NAME..."
+    python install.py
+  fi
+
+  if [ -f install.sh ]; then
+    echo "Running install.sh for $FOLDER_NAME..."
+    chmod +x install.sh
+    ./install.sh
+  fi
+}
+
+install_node https://github.com/kijai/ComfyUI-KJNodes.git ComfyUI-KJNodes
+install_node https://github.com/AInVFX/ComfyUI-SeedVR2_VideoUpscaler.git ComfyUI-SeedVR2_VideoUpscaler
+install_node https://github.com/cubiq/ComfyUI_essentials.git ComfyUI_essentials
+install_node https://github.com/niknah/quick-connections.git quick-connections
+install_node https://github.com/SethRobinson/comfyui-workflow-to-api-converter-endpoint.git comfyui-workflow-to-api-converter-endpoint
+install_node https://github.com/Comfy-Org/ComfyUI-Manager.git ComfyUI-Manager
+install_node https://github.com/Fannovel16/comfyui_controlnet_aux.git comfyui_controlnet_aux
+install_node https://github.com/ltdrdata/ComfyUI-Impact-Pack.git ComfyUI-Impact-Pack
+install_node https://github.com/rgthree/rgthree-comfy.git rgthree-comfy
+install_node https://github.com/chflame163/ComfyUI_LayerStyle.git ComfyUI_LayerStyle
+
+echo "========================================================="
+echo "CUSTOM NODES COMPLETE"
+echo "========================================================="
