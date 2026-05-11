@@ -229,5 +229,12 @@ install_node https://github.com/rgthree/rgthree-comfy.git rgthree-comfy
 install_node https://github.com/chflame163/ComfyUI_LayerStyle.git ComfyUI_LayerStyle
 
 echo "========================================================="
+echo "INSTALLING FLASH-ATTN WHEEL"
+echo "========================================================="
+
+pip install --no-cache-dir \
+"https://github.com/lesj0610/flash-attention/releases/download/v2.8.3-cu12-torch2.10-cp312/flash_attn-2.8.3%2Bcu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+
+echo "========================================================="
 echo "CUSTOM NODES COMPLETE"
 echo "========================================================="
