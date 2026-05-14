@@ -1,23 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+
 echo "========================================================="
-echo "Install aria2"
+echo "Installing aria2"
 echo "========================================================="
 
 if ! command -v aria2c &> /dev/null; then
   apt update && apt install -y aria2
 fi
 
+echo ""
 echo "========================================================="
-echo "Install Flash Attention"
+echo "Installing Flash Attention"
 echo "========================================================="
 
 pip install --no-cache-dir \
 "https://github.com/lesj0610/flash-attention/releases/download/v2.8.3-cu12-torch2.10-cp312/flash_attn-2.8.3%2Bcu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
 
+echo ""
 echo "========================================================="
-echo "Model Downloads"
+echo "Preparing Model Directories"
 echo "========================================================="
 
 COMFY_DIR="/workspace/ComfyUI/models"
+
+mkdir -p \
+"$COMFY_DIR/diffusion_models" \
+"$COMFY_DIR/text_encoders" \
+"$COMFY_DIR/vae" \
+"$COMFY_DIR/loras"
 
 ARIA2_OPTS="-x 16 -s 16 -k 1M --file-allocation=none"
 
@@ -29,17 +41,13 @@ download () {
   echo "Downloading: $(basename "$out")"
 
   aria2c $ARIA2_OPTS \
+    --header="Authorization: Bearer ${HF_TOKEN}" \
     -d "$(dirname "$out")" \
     -o "$(basename "$out")" \
     "$url" &
 }
 
-mkdir -p \
-"$COMFY_DIR/diffusion_models" \
-"$COMFY_DIR/text_encoders" \
-"$COMFY_DIR/vae" \
-"$COMFY_DIR/loras"
-
+echo ""
 echo "========================================================="
 echo "FireRed Image Edit 1.1"
 echo "========================================================="
@@ -60,6 +68,7 @@ download \
 "https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.0-ComfyUI/resolve/main/FireRed-Image-Edit-1.0-Lightning-8steps-v1.0.safetensors" \
 "$COMFY_DIR/loras/FireRed-Image-Edit-1.0-Lightning-8steps-v1.0.safetensors"
 
+echo ""
 echo "========================================================="
 echo "Flux2 Klein 9B"
 echo "========================================================="
@@ -75,6 +84,11 @@ download \
 download \
 "https://huggingface.co/black-forest-labs/FLUX.2-small-decoder/resolve/main/full_encoder_small_decoder.safetensors" \
 "$COMFY_DIR/vae/full_encoder_small_decoder.safetensors"
+
+echo ""
+echo "========================================================="
+echo "Waiting For Downloads"
+echo "========================================================="
 
 wait
 
