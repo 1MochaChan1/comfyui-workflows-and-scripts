@@ -82,6 +82,13 @@ echo "========================================================="
 echo "Waiting For Downloads"
 echo "========================================================="
 
+wait
+
+echo ""
+echo "========================================================="
+echo "ALL MODEL DOWNLOADS COMPLETE"
+echo "========================================================="
+
 
 echo ""
 echo "========================================================="
@@ -91,9 +98,7 @@ echo "========================================================="
 pip install --no-cache-dir \
 "https://github.com/lesj0610/flash-attention/releases/download/v2.8.3-cu12-torch2.10-cp312/flash_attn-2.8.3%2Bcu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
 
-wait
-
 echo ""
 echo "========================================================="
-echo "ALL MODEL DOWNLOADS COMPLETE"
+echo "Flash Attention Installed"
 echo "========================================================="
