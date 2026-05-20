@@ -79,16 +79,27 @@ download \
 
 echo ""
 echo "========================================================="
+echo "Flux2 Klein 4B"
+echo "========================================================="
+
+download \
+"https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4B/resolve/main/flux-2-klein-base-4b.safetensors" \
+"$COMFY_DIR/diffusion_models/flux-2-klein-base-4b.safetensors"
+
+download \
+"https://huggingface.co/Comfy-Org/flux2-klein-4B/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors" \
+"$COMFY_DIR/text_encoders/qwen_3_4b.safetensors"
+
+download \
+"https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors" \
+"$COMFY_DIR/vae/flux2-vae.safetensors"
+
+echo ""
+echo "========================================================="
 echo "Waiting For Downloads"
 echo "========================================================="
 
 wait
-
-echo ""
-echo "========================================================="
-echo "ALL MODEL DOWNLOADS COMPLETE"
-echo "========================================================="
-
 
 echo ""
 echo "========================================================="
@@ -100,5 +111,5 @@ pip install --no-cache-dir \
 
 echo ""
 echo "========================================================="
-echo "Flash Attention Installed"
+echo "ALL MODEL DOWNLOADS COMPLETE"
 echo "========================================================="
