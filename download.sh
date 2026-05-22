@@ -1,1 +1,1 @@
--sSfL "http://raw.githubusercontent.com/1MochaChan1/comfyui-workflows-and-scripts/main/download.sh" -o download.sh && chmod +x download.sh
+-sSfL "http://raw.githubusercontent.com/1MochaChan1/comfyui-workflows-and-scripts/main/comfyui-klein-firered.sh" -o download.sh && chmod +x download.sh
